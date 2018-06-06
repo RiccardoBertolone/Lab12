@@ -1,12 +1,12 @@
 package it.polito.tdp.rivers.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class River {
 	private int id;
 	private String name;
-	private double flowAvg;
 	private List<Flow> flows;
 	
 	public River(int id) {
@@ -16,6 +16,7 @@ public class River {
 	public River(int id, String name) {
 		this.id = id;
 		this.name = name;
+		flows = new LinkedList<>() ;
 	}
 
 	public String getName() {
@@ -34,13 +35,6 @@ public class River {
 		this.name = name;
 	}
 	
-	public double getFlowAvg() {
-		return flowAvg;
-	}
-
-	public void setFlowAvg(double flowAvg) {
-		this.flowAvg = flowAvg;
-	}
 
 	public void setFlows(List<Flow> flows) {
 		this.flows = flows;
@@ -77,5 +71,14 @@ public class River {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	
+	public double getFlowMedio() {
+		   	
+    	double media = 0.0 ;
+    	for (Flow f :flows) {
+    		media+=f.getFlow() ;
+    	}
+    	return media/flows.size() ;
 	}
 }
